@@ -105,7 +105,7 @@ A date filter in `FastRebuildSentLog` dropped timesheets submitted on deadline d
 ### Prerequisites
 - Python 3.11+
 - PostgreSQL 15+
-- A Microsoft 365 account with a shared mailbox (for production use)
+- A Microsoft 365 account with a shared mailbox **classic view on desktop** (for production use)
 
 ### Local development
 
