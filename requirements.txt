@@ -1,0 +1,7 @@
+faker==24.0.0
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.29
+python-dotenv==1.0.1
+beautifulsoup4==4.12.3
+lxml==5.1.0
+pytest==8.1.1
