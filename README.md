@@ -133,4 +133,4 @@ The VBA system (`approvalflow`) remains in production and is not being replaced 
 
 Alexis Prieto  
 HR Systems and Automation Analyst  
-[LinkedIn](www.linkedin.com/in/alexis-prieto-mscs-shrm-cp-414163157)
+[LinkedIn](https://www.linkedin.com/in/alexis-prieto-mscs-shrm-cp-414163157?utm_source=share_via&utm_content=profile&utm_medium=member_ios)
