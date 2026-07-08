@@ -125,7 +125,8 @@ python db/seed.py
 
 ## Relationship to Production VBA System
 
-The VBA system (`approvalflow`) remains in production and is not being replaced until this rebuild is fully tested. This repo is developed entirely on a personal MacBook Pro M1 using synthetic data. No real institutional data is used here.
+This project is a Python rebuild of a production Outlook and Excel-based timesheet approval system originally built in VBA. The original system is not published as a public repository, since it was built for internal institutional use and contains references tied to a specific organization's operations.
+The VBA system automated timesheet approval for over 200 student interns across 85 off-site placement locations, reducing what had been a 32-hour manual monthly process, previously handled by a single person, down to approximately 12 hours. This Python rebuild reimplements that workflow as an independent, original codebase, with no institutional data, credentials, or proprietary logic carried over.
 
 ---
 
