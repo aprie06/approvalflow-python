@@ -2,7 +2,7 @@
 
 **Python rebuild of ApprovalFlow — intern timesheet approval automation**
 
-This is a ground-up rebuild of [ApprovalFlow](https://github.com/alexisprieto/approvalflow), a production VBA system that automates timesheet approval routing for an Off-Site Internship Program at a multi-campus community college system. The VBA version has been running in production since January 2024 and has reduced processing time by 75%, saving approximately 576 hours annually.
+This is a ground-up rebuild of ApprovalFlow, a production VBA system that automates timesheet approval routing for an Off-Site Internship Program at a multi-campus community college system. The VBA version has been running in production since January 2024 and has reduced processing time by 75%, saving approximately 576 hours annually.
 
 This rebuild exists because the VBA system has real architectural limits: it requires Outlook to stay open on one Windows machine, stores all data in Excel, has no API surface, and cannot scale to multiple institutions. This repo is the path to a deployable, maintainable, multi-tenant version.
 
