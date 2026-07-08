@@ -21,7 +21,6 @@ from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy import select
 
 from db.models import (
-    Organization,
     Supervisor,
     Intern,
     PayPeriod,

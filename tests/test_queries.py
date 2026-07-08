@@ -11,10 +11,10 @@ so tests do not interfere with each other and never need manual cleanup.
 """
 
 import os
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 
 import pytest
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from db.models import Base, Organization, Supervisor, Intern
