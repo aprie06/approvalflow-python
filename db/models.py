@@ -194,7 +194,7 @@ class SubmissionTracking(Base):
     )
 
     __table_args__ = (
-        UniqueConstraint("pay_period_id", "intern_id", name="uq_submission_tracking_period_intern"),
+        UniqueConstraint("pay_period_id", "intern_id"),
         CheckConstraint(
             "status IN ('PENDING', 'APPROVED', 'REJECTED', 'CORRECTIONS', 'MISSING')",
             name="ck_submission_tracking_status",
