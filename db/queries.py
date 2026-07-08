@@ -232,7 +232,7 @@ def upsert_submission_tracking(
         notes=notes,
     )
     stmt = stmt.on_conflict_do_update(
-        constraint="uq_submission_tracking_period_intern",
+        index_elements=["pay_period_id", "intern_id"],
         set_={
             "submitted_at": stmt.excluded.submitted_at,
             "approved_at": stmt.excluded.approved_at,
