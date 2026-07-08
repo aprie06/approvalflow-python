@@ -5,3 +5,5 @@ python-dotenv==1.0.1
 beautifulsoup4==4.12.3
 lxml==5.1.0
 pytest==8.1.1
+sqlalchemy
+psycopg2-binary
