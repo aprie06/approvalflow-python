@@ -2,7 +2,7 @@
 
 **Python rebuild of ApprovalFlow — intern timesheet approval automation**
 
-This is a ground-up rebuild of ApprovalFlow, a production VBA system that automates timesheet approval routing for an Off-Site Internship Program at a multi-campus community college system. The VBA version has been running in production since January 2024 and has reduced processing time by 75%, saving approximately 576 hours annually.
+This is a ground-up rebuild of [approvalflow-vba](https://github.com/aprie06/approvalflow-vba), a production VBA system that automates timesheet approval routing for an Off-Site Internship Program at a multi-campus community college system. The VBA version has been running in production since January 2024 and has reduced processing time by 75%, saving approximately 576 hours annually.
 
 This rebuild exists because the VBA system has real architectural limits: it requires Outlook to stay open on one Windows machine, stores all data in Excel, has no API surface, and cannot scale to multiple institutions. This repo is the path to a deployable, maintainable, multi-tenant version.
 
@@ -123,10 +123,11 @@ python db/seed.py
 
 ---
 
-## Relationship to Production VBA System
-
-This project is a Python rebuild of a production Outlook and Excel-based timesheet approval system originally built in VBA. The original system is not published as a public repository, since it was built for internal institutional use and contains references tied to a specific organization's operations.
-The VBA system automated timesheet approval for over 200 student interns across 85 off-site placement locations, reducing what had been a 32-hour manual monthly process, previously handled by a single person, down to approximately 12 hours. This Python rebuild reimplements that workflow as an independent, original codebase, with no institutional data, credentials, or proprietary logic carried over.
+## Relationship to the Original VBA System
+ 
+This project is a Python rebuild of a production Outlook and Excel-based timesheet approval system originally built in VBA. The original, anonymized VBA source is published separately: [approvalflow-vba](https://github.com/aprie06/approvalflow-vba).
+ 
+The VBA system automated timesheet approval for 200 student interns across 85+ off-site placement locations, reducing processing time from roughly 32 hours to roughly 12 hours per pay period. This Python rebuild reimplements that workflow as an independent, original codebase, with no institutional data, credentials, or proprietary logic carried over.
 
 ---
 
