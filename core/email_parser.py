@@ -1,16 +1,35 @@
 """
 email_parser.py
 
-Parses Banner-style HTML notification emails to extract intern timesheet data.
+Parses HR/payroll HTML notification emails to extract intern timesheet data.
 
-This is a Python translation of the HTML parsing logic in the VBA MoveItems macro.
-In VBA, this was done with MSHTML DOM parsing (htmlDoc.Body.innerHTML) which caused
-Outlook to freeze on large batches. This implementation uses BeautifulSoup and is
-stateless — pass in an email body string, get back a structured dict.
+This is a NEW implementation for the Python rebuild, not a line-for-line
+translation of the VBA system's email parsing. The two differ in real ways:
 
-VBA reference: MoveItems subroutine, ExtractEmailFromHTMLBody function
-Key lesson from VBA: TD index 5 (zero-indexed) in the first table row holds
-the student institutional email, which is the primary lookup key.
+  - The VBA MoveItems macro (and its ExtractEmailFromHTMLBody helper) counted
+    <td> elements across the ENTIRE document, flat, with no table or row
+    awareness, and read whichever cell landed at position 6. This parser
+    scopes to the first table's first row specifically, a different,
+    more structured approach.
+
+  - VBA only ever extracted the student's institutional email from the
+    notification HTML. Employee name, ID, pay period, and hours all came
+    from a separate Excel roster lookup (LoadLookupDataIntoMemory /
+    GetStudentName), not from the notification email itself. This parser
+    extracts all of those fields directly from the HTML, which assumes
+    the actual HR/payroll notification format includes them. That
+    assumption has not yet been checked against a real notification
+    email and should be verified before this is relied on.
+
+Uses BeautifulSoup and is stateless — pass in an email body string, get
+back a structured dict. This avoids the VBA system's MSHTML DOM parsing,
+which caused Outlook to freeze on large batches (see approvalflow-vba's
+Known Issues: "Outlook freeze during FastRebuildSentLog").
+
+Test data (tests/test_email_parser.py) is self-contained and does not
+reflect a verified real notification format; it exists to test this
+parser's own logic, not to validate the assumed HTML structure itself.
+
 """
 
 from bs4 import BeautifulSoup
@@ -81,8 +100,7 @@ def parse_notification_email(html_body: str) -> ParsedNotification:
     # Row 1: Employee Name | value | Employee ID | value | Department | student_email
     # Row 2: Pay Period    | value | Total Hours | value | Status     | value
     #
-    # VBA used TD index 5 (zero-indexed) for the institutional email.
-    # That is the 6th cell in the first table row.
+    # VBA used flat, document-wide TD indexing (Item(5)) for this same field; this implementation scopes to the first table's first row instead.
     employee_name = None
     employee_id = None
     institutional_email = None
@@ -118,7 +136,7 @@ def parse_notification_email(html_body: str) -> ParsedNotification:
             employee_id = cell_texts[3] if cell_texts[3] else None
 
         # Cell index 5: institutional email — primary lookup key
-        # VBA: TD6 (zero-indexed Item(5))
+        # VBA used flat, document-wide TD indexing (Item(5)) for this same field, no table/row awareness; this parser scopes to the first table's first row instead
         if len(cell_texts) > 5:
             raw_email = cell_texts[5]
             if "@" in raw_email:
